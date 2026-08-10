@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكافأة فوفي الخاصة من توتي! 🎀🐱</title>
+    <!-- مكتبة المفرقعات والقلوب الاحتفالية -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: #ffe6ed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            background-image: radial-gradient(#ffb6c1 25%, transparent 25%);
+            background-size: 20px 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 35px;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            box-sizing: border-box;
+        }
+        /* صور هالو كيتي المدمجة */
+        .kitty-top {
+            width: 90px;
+            height: auto;
+            margin-bottom: -10px;
+        }
+        .kitty-corner {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 75px;
+            z-index: 10;
+        }
+        h1 {
+            color: #ff1493;
+            margin: 10px 0 5px 0;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        #video-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid #ffb6c1;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        #reward {
+            display: none;
+            animation: bounceIn 0.8s ease forwards;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .juice-img {
+            width: 170px;
+            max-width: 80%;
+            border-radius: 20px;
+            margin: 10px 0;
+            filter: drop-shadow(0px 8px 15px rgba(255, 105, 180, 0.4));
+        }
+        .hello-kitty-episode {
+            width: 100%;
+            border-radius: 20px;
+            border: 3px dashed #ff69b4;
+            margin-top: 15px;
+            overflow: hidden;
+            background: #fff0f5;
+        }
+        .hello-kitty-episode iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+        }
+        .signature {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff1493;
+            background: #fff0f5;
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            border: 2px dashed #ff69b4;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        /* زر احتياطي لفتح المكافأة */
+        #manual-btn {
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- هالو كيتي وهي بترقص (من المستودع الخاص بك) -->
+        <img class="kitty-top" src="kitty_top.gif" alt="Hello Kitty Dancing">
+        <img class="kitty-corner" src="kitty_bottom.png" alt="Hello Kitty">
+
+        <div id="main-content">
+            <h1>شطورهههههه يا فوفيييي 🎉✨</h1>
+            <p>ركزي في الدرس وكمليه للآخر عشان تفتحي المكافأة 🎓</p>
+            
+            <div id="video-wrapper">
+                <div id="player"></div>
+            </div>
+
+            <!-- زرار يدوي للاحتياط لو الموبايل كتم تشغيل النوايا المباشرة -->
+            <button id="manual-btn" onclick="triggerReward()">خلصت الدرس يا توتي! 🎁</button>
+        </div>
+
+        <div id="reward">
+            <!-- هالو كيتي بترقص مع ظهور المكافأة -->
+            <img style="width: 100px;" src="kitty_top.gif" alt="Dancing Kitty">
+            
+            <h1>🎉 ألف مبروك يا فوفي! 🎉</h1>
+            <p style="color: #ff1493; font-weight: bold; font-size: 18px;">
+                الدرس خلص والمكافأة وصلت! 🍓💃
+            </p>
+            
+            <!-- صورة العصير المحلي -->
+            <div>
+                <img class="juice-img" src="juhayna.png" alt="عصير جهينة فراولة">
+            </div>
+
+            <!-- حلقة هالو كيتي الكرتونية كمكافأة إضافية -->
+            <div class="hello-kitty-episode">
+                <p style="color: #ff1493; margin: 10px; font-weight: bold;">📺 حلقة هالو كيتي هدية ليكِ:</p>
+                <iframe src=https://youtu.be/LP9CQ8uGHeY?si=GIpIjMcMPFHouT78 allowfullscreen></iframe>
+            </div>
+            
+            <br>
+            <div class="signature">مع كل الحب من توتي 💖</div>
+        </div>
+    </div>
+
+    <!-- ملف الصوت الخاص بك من غيت هاب -->
+    <audio id="reward-music" src="reward_music.mp3" preload="auto"></audio>
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '280',
+                width: '100%',
+                videoId: '1l6-MzGJ5DA',
+                events: { 'onStateChange': onPlayerStateChange }
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                triggerReward();
+            }
+        }
+
+        function triggerReward() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('reward').style.display = 'block';
+            
+            // 1. مفرقعات مع قلوب وألوان وردية
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            confetti(Object.assign({}, defaults, { particleCount: 80, scalar: 1.2, shapes: ['heart'], colors: ['#ff69b4', '#ff1493', '#ffffff'] }));
+            confetti(Object.assign({}, defaults, { particleCount: 100, spread: 100, origin: { y: 0.6 } }));
+
+            // 2. تشغيل الملف الصوتي الخاص بك
+            var audio = document.getElementById('reward-music');
+            if (audio) {
+                audio.play().catch(function(e) {
+                    console.log("تطلب تفاعل المستخدم لتشغيل الصوت");
+                });
+            }
+        }
+    </script>
+</body>
+</html>
